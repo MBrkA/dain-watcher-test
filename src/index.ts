@@ -188,11 +188,33 @@ const getWeatherForecastConfig: ToolConfig = {
   },
 };
 
+const printHelloWorldConfig: ToolConfig = {
+  id: "print-hello-world",
+  name: "Print Hello World",
+  description: "Prints 'Hello World' to the console",
+  input: z.object({}),
+  output: z.object({}),
+  handler: async (input, agentInfo, context) => {
+    console.log("Hello World");
+    return {
+      text: "Hello World",
+      data: {
+        message: "Hello World",
+      },
+      ui: new CardUIBuilder()
+        .setRenderMode("page")
+        .title("Hello World")
+        .content("Hello World")
+        .build(),
+    };
+  },
+};
+
 const dainService = defineDAINService({
   metadata: {
     title: "Weather DAIN Service",
     description:
-      "A DAIN service for current weather and forecasts using Open-Meteo API",
+      "A DAIN service for current weather and forecasts using Open-Meteo API and a tool to print 'Hello World' to the console",
     version: "1.0.0",
     author: "Your Name",
     tags: ["weather", "forecast", "dain"],
@@ -211,7 +233,7 @@ const dainService = defineDAINService({
   identity: {
     apiKey: process.env.DAIN_API_KEY,
   },
-  tools: [getWeatherConfig, getWeatherForecastConfig],
+  tools: [getWeatherConfig, getWeatherForecastConfig, printHelloWorldConfig],
 });
 
 dainService.startNode().then(({ address }) => {
