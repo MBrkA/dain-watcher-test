@@ -214,7 +214,7 @@ const dainService = defineDAINService({
   metadata: {
     title: "Weather DAIN Service",
     description:
-      "A DAIN service for current weather and forecasts using Open-Meteo API and a tool to print 'Hello World'",
+      "A DAIN service for current weather and forecasts using Open-Meteo API and a tool to print 'Hello World' to the console",
     version: "1.0.0",
     author: "Your Name",
     tags: ["weather", "forecast", "dain"],
